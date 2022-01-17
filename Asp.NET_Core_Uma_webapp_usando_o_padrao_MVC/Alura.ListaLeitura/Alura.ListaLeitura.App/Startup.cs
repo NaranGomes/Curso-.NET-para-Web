@@ -39,8 +39,8 @@ namespace Alura.ListaLeitura.App
         {
             var livro = new Livro()
             {
-                Titulo = context.Request.Query["titulo"].First(),
-                Autor = context.Request.Query["autor"].First(),
+                Titulo = context.Request.Form["titulo"].First(),
+                Autor = context.Request.Form["autor"].First(),
                 
             };
             var repo = new LivroRepositorioCSV();
@@ -57,7 +57,7 @@ namespace Alura.ListaLeitura.App
         private string CarregaArquivoHTML(string nomeArquivo)
         {
             var nomeCompletoDoArquivo = $"HTML/{nomeArquivo}.html";
-            using (var arquivo = File.OpenText(nomeCompletoDoArquivo))
+            using (StreamReader arquivo = File.OpenText(nomeCompletoDoArquivo))
             {
                 return arquivo.ReadToEnd();
             }         
